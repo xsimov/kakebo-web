@@ -1,39 +1,30 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Alert from "@kiwicom/orbit-components/lib/Alert";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
-const About = () => <div>hola</div>;
-const Home = () => <Alert>Hello World!</Alert>;
-const Users = () => <div>users</div>;
+import Navigation from "./components/Navigation";
+import ExpenseForm from "./pages/expenses/Form";
+import ExpenseList from "./pages/expenses/List";
+
+const BelowNavigationContent = styled.div`
+  margin-top: 5rem;
+`;
 
 const App = () => (
   <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-      </nav>
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </div>
+    <Navigation />
+    <Switch>
+      <Route path="/form">
+        <BelowNavigationContent>
+          <ExpenseForm />
+        </BelowNavigationContent>
+      </Route>
+      <Route path="/">
+        <BelowNavigationContent>
+          <ExpenseList />
+        </BelowNavigationContent>
+      </Route>
+    </Switch>
   </Router>
 );
 
